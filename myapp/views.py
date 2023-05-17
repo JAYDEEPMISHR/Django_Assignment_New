@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from . models import Admin
+from django.db.models import Q
 
 # Create your views here.
 
@@ -47,3 +48,18 @@ def delete(request,id):
 		'data':data
 	}
 	return redirect('index')
+
+def product_manager(request):
+		return render(request,'product_manager.html')
+
+def search(request):
+	data=Admin.objects.all()
+	if 'q' in request.GET:
+		q = request.GET['q']
+		multiple_q = Q(Q(product_name__icontains=q) | Q(product_price__icontains=q) | Q(product_model__icontains=q))
+		data=Admin.objects.filter(multiple_q)
+		return render(request,'product_manager.html',{'data':data})
+
+	else:
+		data=Admin.objects.all()
+		return render(request,'product_manager.html',{'data':data})
