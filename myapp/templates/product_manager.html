@@ -80,8 +80,6 @@ body {
 </style>
 </head>
 <body>
-
-
 <div class="topnav">
   <a class="active" href="/">Home</a>
   <div class="search-container">
@@ -90,28 +88,8 @@ body {
       <button type="submit"><i class="fa fa-search"></i></button>
     </form>
   </div>
-  <div>
-      <table>
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Product Price</th>
-                    <th>Product Model</th>
-                </tr>
-            </thead>
-                <tbody>
-                  {% for i in data %}
-                    <tr>
-                        <td>{{i.product_name}}</td>
-                        <td>{{i.product_price}}</td>
-                      <td>{{i.product_model}}</td>  
-                    </tr>  
-                  {% endfor %}    
-                </tbody>
-        </table>
-    </div>
-  
 </div>
 </body>
 </html>
-
+{% block content %}
+{% endblock %}
